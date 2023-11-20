@@ -1,0 +1,9 @@
+function iniciarPartida(){
+
+};
+
+
+
+function crearTaulell(){
+
+};
