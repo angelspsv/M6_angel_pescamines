@@ -1,0 +1,13 @@
+.joc {
+    padding-top: 150px;
+}
+
+.buton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+table, td {
+    border: 1px solid black;
+}
