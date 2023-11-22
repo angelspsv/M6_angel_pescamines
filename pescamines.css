@@ -8,6 +8,14 @@
     align-items: center;
 }
 
+/* dona alguna forma bàsica a la taula */
 table, td {
     border: 1px solid black;
+    text-align: center;
+    cursor: pointer;
+}
+
+/* donar color als camps que ja han rebut un click */
+td.clicked {
+    background-color: rgb(26, 235, 238);
 }
