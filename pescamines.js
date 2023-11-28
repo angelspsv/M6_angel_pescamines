@@ -5,19 +5,20 @@ let num;
 function iniciarPartida(){
     num = parseInt(prompt("Entra el nombre de files del quadrat del pescamines:")); 
 
-    //calcula nombre de mines segons la mida del taulell dins de les proporcions des de 10 fins als 30 files*columnes
-    numMinas = Math.floor((num * num) * 0.17);
-    
     //condicions del nombre de files introduits per la creació del taulell
+    //calcula nombre de mines segons la mida del taulell dins de les proporcions des de 10 fins als 30 files*columnes
     if (num <= 10) {
         num = 10;
+        numMinas = Math.floor((num * num) * 0.17);
         crearTabla(num);
         asignarMinas();
     } else if (num >= 30) {
         num = 30;
+        numMinas = Math.floor((num * num) * 0.17);
         crearTabla(num);
         asignarMinas();
     } else {
+        numMinas = Math.floor((num * num) * 0.17);
         crearTabla(num);
         asignarMinas();
     }
@@ -64,16 +65,13 @@ function procesaClick(i, j){
 
 //funció que assigna les mines al taulell
 function asignarMinas(){
+    let random_i = 0;
+    let random_j = 0;
     for(let i=0; i<numMinas; i++){
-        let random_i = 0;
-        let random_j = 0;
-        do {
-            //agafa posicions random del taulell per assignar les mines
-            random_i = Math.floor(Math.random() * num);
-            random_j = Math.floor(Math.random() * num);
-        } while (EsMina(random_i, random_j));
-
-        EsMina(random_i, random_j);
+        //agafa posicions random del taulell per assignar les mines
+        random_i = Math.floor(Math.random() * num);
+        random_j = Math.floor(Math.random() * num);
+        EsMina(random_i, random_j); 
     }
 }
 
