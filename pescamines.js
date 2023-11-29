@@ -53,6 +53,10 @@ function procesaClick(i, j){
     //Evitar procesar clics en celdas ya descubiertas
     if (campo.dataset.mina == "true"){
         alert("¡Boom! Has muerto.");
+        
+        //función que muestra todas las minas al ser acertada una
+        //por el jugador
+        mostrarMinas();
         return;
     }
 
@@ -79,4 +83,16 @@ function asignarMinas(){
 function EsMina(x, y){
     let campo = taulell.rows[x].cells[y];
     campo.dataset.mina = "true";
+}
+
+//función para mostrar todas las minas una vez el jugador acierte una
+function mostrarMinas(){
+    for (let i=0; i<num; i++) {
+        for (let j=0; j<num; j++) {
+            let campo = taulell.rows[i].cells[j];
+            if (campo.dataset.mina == "true") {
+                campo.classList.add("mina");
+            }
+        }
+    }
 }

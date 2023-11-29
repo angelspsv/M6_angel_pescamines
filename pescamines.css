@@ -17,5 +17,10 @@ table, td {
 
 /* donar color als camps que ja han rebut un click */
 td.clicked {
-    background-color: rgb(26, 235, 238);
+    background-color: rgb(37, 215, 150);
+}
+
+/* pinta de color rojo los campos o casillas con minas */
+.mina{
+    background-color: rgb(230, 51, 51);
 }
