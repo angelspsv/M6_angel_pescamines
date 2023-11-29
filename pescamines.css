@@ -1,11 +1,11 @@
 .joc {
-    padding-top: 150px;
+    padding-top: 15%;
+    padding-left: 40%;
 }
 
 .buton {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    padding-bottom: 10px;
+    padding-left: 60px;
 }
 
 /* dona alguna forma bàsica a la taula */
