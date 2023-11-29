@@ -63,9 +63,49 @@ function procesaClick(i, j){
     //si un camp ja ha estat clickat canvia de color
     if (!campo.classList.contains("clicked")) {
         campo.classList.add("clicked");
+
+        mostrarNumerosAdyacentes(i, j);
     }
-    
 }
+
+
+//función que calcula las minas adyacientes
+function calcularMinasAdyacentes(row, col) {
+    let count = 0;
+    let casillasAdyacentes = [{ row: row - 1, col: col - 1 }, { row: row - 1, col: col }, { row: row - 1, col: col + 1 }, { row: row, col: col - 1 }, { row: row, col: col + 1 }, { row: row + 1, col: col - 1 }, { row: row + 1, col: col }, { row: row + 1, col: col + 1 }];
+
+    for (let i = 0; i < casillasAdyacentes.length; i++) {
+        let coord = casillasAdyacentes[i];
+        let { row, col } = coord;
+        let casilla = taulell.rows[row] && taulell.rows[row].cells[col];
+        
+        if (casilla && casilla.dataset.mina === "true") {
+            count++;
+        }
+    }
+    return count;
+}
+
+
+//funció que mostra el nombre de mines properes als camps propers
+function mostrarNumerosAdyacentes(row, col) {
+    let casillasAdyacentes = [{ row: row - 1, col: col - 1 }, { row: row - 1, col: col }, { row: row - 1, col: col + 1 }, { row: row, col: col - 1 }, { row: row, col: col + 1 }, { row: row + 1, col: col - 1 }, { row: row + 1, col: col }, { row: row + 1, col: col + 1 }];
+
+    for (let i = 0; i < casillasAdyacentes.length; i++) {
+        let coord = casillasAdyacentes[i];
+        let { row, col } = coord;
+        let casilla = taulell.rows[row] && taulell.rows[row].cells[col];
+        
+        if (casilla && !casilla.classList.contains("clicked") && casilla.dataset.mina !== "true") {
+            let numMines = calcularMinasAdyacentes(row, col);
+            if (numMines > 0) {
+                casilla.textContent = numMines;
+            }
+            casilla.classList.add("clicked");
+        }
+    }
+}
+
 
 //funció que assigna les mines al taulell
 function asignarMinas(){
