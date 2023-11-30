@@ -22,7 +22,7 @@ td {
     line-height: 20px;
 }
 
-/* donar color als camps que ja han rebut un click */
+/* donar color als camps que ja han rebut un click i/o s'han obert */
 td.clicked {
     background-color: rgb(37, 215, 150);
 }

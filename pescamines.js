@@ -5,7 +5,7 @@ let num;
 function iniciarPartida(){
     num = parseInt(prompt("Entra el nombre de files del quadrat del pescamines:")); 
 
-    //condicions del nombre de files introduits per la creació del taulell
+    //condicions del nombre de files segons el nombre introduit per la creació del taulell
     //calcula nombre de mines segons la mida del taulell dins de les proporcions des de 10 fins als 30 files*columnes
     if (num <= 10) {
         num = 10;
@@ -46,10 +46,10 @@ function procesaClick(i, j){
     //alert per fer proves
     //alert(`Has hecho clic en la celda (${i + 1}, ${j + 1})`);
 
-    //l'element campo del taulell amb les coordenades
+    //l'element camp del taulell amb les coordenades
     let camp = taulell.rows[i].cells[j];
 
-    //Evitar procesar clics en celdas ya descubiertas
+    //si la casilla lleva una mina asociada
     if (camp.dataset.mina == "true"){
         alert("¡Boom! Estàs mort.");
         
@@ -58,7 +58,7 @@ function procesaClick(i, j){
         return;
     }
 
-    //si un camp ja ha estat clickat canvia de color
+    //un camp canvia de color si rep un click
     if (!camp.classList.contains("clicked")) {
         camp.classList.add("clicked");
 
@@ -136,7 +136,7 @@ function mostrarMinas(){
     }
 }
 
-//funció que mostra totes les mines quan el jugador ja ha tocat una mina
+//funció per mostrar la imatge de la mina
 function mostrarImagenMina(row, col) {
     let imagenMina = 'mina20px.jpg';
     let casilla = taulell.rows[row].cells[col];
