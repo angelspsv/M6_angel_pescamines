@@ -27,11 +27,6 @@ td.clicked {
     background-color: rgb(37, 215, 150);
 }
 
-/* pinta de color rojo los campos o casillas con minas */
-.mina{
-    background-color: rgb(230, 51, 51);
-}
-
 #taulell {
     margin-left: -50px;
 }

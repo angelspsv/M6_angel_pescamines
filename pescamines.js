@@ -33,7 +33,6 @@ function crearTabla(num){
         
         for(let j=0; j<num; j++){
             let col = fila.insertCell(j);
-            col.innerHTML = "?";
         
             //al fer click en un camp, agafa les coordenades
             col.addEventListener("click", function() {
@@ -131,8 +130,15 @@ function mostrarMinas(){
         for (let j=0; j<num; j++) {
             let camp = taulell.rows[i].cells[j];
             if (camp.dataset.mina == "true") {
-                camp.classList.add("mina");
+                mostrarImagenMina(i, j);
             }
         }
     }
+}
+
+//funció que mostra totes les mines quan el jugador ja ha tocat una mina
+function mostrarImagenMina(row, col) {
+    let imagenMina = 'mina20px.jpg';
+    let casilla = taulell.rows[row].cells[col];
+    casilla.innerHTML = `<img src="${imagenMina}" alt="mina" class="mina" />`;
 }
