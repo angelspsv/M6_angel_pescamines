@@ -11,16 +11,16 @@ function iniciarPartida(){
         num = 10;
         numMinas = Math.floor((num * num) * 0.17);
         crearTabla(num);
-        asignarMinas();
+        setMines();
     } else if (num >= 30) {
         num = 30;
         numMinas = Math.floor((num * num) * 0.17);
         crearTabla(num);
-        asignarMinas();
+        setMines();
     } else {
         numMinas = Math.floor((num * num) * 0.17);
         crearTabla(num);
-        asignarMinas();
+        setMines();
     }
 };
 
@@ -48,35 +48,35 @@ function procesaClick(i, j){
     //alert(`Has hecho clic en la celda (${i + 1}, ${j + 1})`);
 
     //l'element campo del taulell amb les coordenades
-    let campo = taulell.rows[i].cells[j];
+    let camp = taulell.rows[i].cells[j];
 
     //Evitar procesar clics en celdas ya descubiertas
-    if (campo.dataset.mina == "true"){
-        alert("¡Boom! Has muerto.");
+    if (camp.dataset.mina == "true"){
+        alert("¡Boom! Estàs mort.");
         
-        //función que muestra todas las minas al ser acertada una
-        //por el jugador
+        //funció que mostra totes les mines al tocar una i fin del joc
         mostrarMinas();
         return;
     }
 
     //si un camp ja ha estat clickat canvia de color
-    if (!campo.classList.contains("clicked")) {
-        campo.classList.add("clicked");
+    if (!camp.classList.contains("clicked")) {
+        camp.classList.add("clicked");
 
+        //funció que mostra el nombre de mines adjacents
         mostrarNumerosAdyacentes(i, j);
     }
 }
 
 
-//función que calcula las minas adyacientes
-function calcularMinasAdyacentes(row, col) {
+//funció que calcula les mines adjacents
+function calculaAdjacents(row, col) {
     let count = 0;
-    let casillasAdyacentes = [{ row: row - 1, col: col - 1 }, { row: row - 1, col: col }, { row: row - 1, col: col + 1 }, { row: row, col: col - 1 }, { row: row, col: col + 1 }, { row: row + 1, col: col - 1 }, { row: row + 1, col: col }, { row: row + 1, col: col + 1 }];
+    let campsAdjacents = [{row: row-1, col: col-1}, {row: row-1, col: col}, {row: row-1, col: col+1}, {row: row, col: col-1}, {row: row, col: col+1}, {row: row+1, col: col-1}, {row: row+1, col: col}, {row: row+1, col: col+1}];
 
-    for (let i = 0; i < casillasAdyacentes.length; i++) {
-        let coord = casillasAdyacentes[i];
-        let { row, col } = coord;
+    for (let i=0; i<campsAdjacents.length; i++) {
+        let coord = campsAdjacents[i];
+        let {row, col} = coord;
         let casilla = taulell.rows[row] && taulell.rows[row].cells[col];
         
         if (casilla && casilla.dataset.mina === "true") {
@@ -89,15 +89,15 @@ function calcularMinasAdyacentes(row, col) {
 
 //funció que mostra el nombre de mines properes als camps propers
 function mostrarNumerosAdyacentes(row, col) {
-    let casillasAdyacentes = [{ row: row - 1, col: col - 1 }, { row: row - 1, col: col }, { row: row - 1, col: col + 1 }, { row: row, col: col - 1 }, { row: row, col: col + 1 }, { row: row + 1, col: col - 1 }, { row: row + 1, col: col }, { row: row + 1, col: col + 1 }];
+    let campsAdjacents = [{row: row-1, col: col-1}, {row: row-1, col: col}, {row: row-1, col: col+1}, {row: row, col: col-1}, {row: row, col: col+1}, {row: row+1, col: col-1}, {row: row+1, col: col}, {row: row+1, col: col+1}];
 
-    for (let i = 0; i < casillasAdyacentes.length; i++) {
-        let coord = casillasAdyacentes[i];
+    for (let i = 0; i < campsAdjacents.length; i++) {
+        let coord = campsAdjacents[i];
         let { row, col } = coord;
         let casilla = taulell.rows[row] && taulell.rows[row].cells[col];
         
         if (casilla && !casilla.classList.contains("clicked") && casilla.dataset.mina !== "true") {
-            let numMines = calcularMinasAdyacentes(row, col);
+            let numMines = calculaAdjacents(row, col);
             if (numMines > 0) {
                 casilla.textContent = numMines;
             }
@@ -108,7 +108,7 @@ function mostrarNumerosAdyacentes(row, col) {
 
 
 //funció que assigna les mines al taulell
-function asignarMinas(){
+function setMines(){
     let random_i = 0;
     let random_j = 0;
     for(let i=0; i<numMinas; i++){
@@ -121,17 +121,17 @@ function asignarMinas(){
 
 //true si un camp és una mina
 function EsMina(x, y){
-    let campo = taulell.rows[x].cells[y];
-    campo.dataset.mina = "true";
+    let camp = taulell.rows[x].cells[y];
+    camp.dataset.mina = "true";
 }
 
-//función para mostrar todas las minas una vez el jugador acierte una
+//funció per mostrar totes les mines un cop el jugador hagi tocat una mina
 function mostrarMinas(){
     for (let i=0; i<num; i++) {
         for (let j=0; j<num; j++) {
-            let campo = taulell.rows[i].cells[j];
-            if (campo.dataset.mina == "true") {
-                campo.classList.add("mina");
+            let camp = taulell.rows[i].cells[j];
+            if (camp.dataset.mina == "true") {
+                camp.classList.add("mina");
             }
         }
     }

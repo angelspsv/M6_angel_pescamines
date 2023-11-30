@@ -1,5 +1,5 @@
 .joc {
-    padding-top: 15%;
+    padding-top: 10%;
     padding-left: 40%;
 }
 
@@ -9,10 +9,17 @@
 }
 
 /* dona alguna forma bàsica a la taula */
-table, td {
+table, tr, td {
     border: 1px solid black;
     text-align: center;
     cursor: pointer;
+}
+
+/* da forma cuadrada a las celdas de la tabla */
+td {
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
 }
 
 /* donar color als camps que ja han rebut un click */
@@ -23,4 +30,8 @@ td.clicked {
 /* pinta de color rojo los campos o casillas con minas */
 .mina{
     background-color: rgb(230, 51, 51);
+}
+
+#taulell {
+    margin-left: -50px;
 }
